@@ -1,0 +1,12 @@
+.page {
+    background-color: #F2F2F7;
+    display: flex;
+    height: 100vh;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: start;
+    align-items: start;/* Center horizontally */
+}
