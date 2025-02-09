@@ -2,6 +2,60 @@
 
 <PageTitle>Home</PageTitle>
 
-<h1 class="bg-">Hello, world!</h1>
+@using System.Timers;
+@inject NavigationManager Navigation
 
-Welcome to your new app.
+@code {
+	private string currentTime;
+	private Timer timer;
+	protected override void OnInitialized()
+	{
+		currentTime = DateTime.Now.ToString();
+		timer = new Timer(1000); // Set the timer interval to 1 second
+		timer.Elapsed += UpdateTime;
+		timer.Start();
+	}
+	private void UpdateTime(object sender, ElapsedEventArgs e)
+	{
+		currentTime = DateTime.Now.ToString();
+		InvokeAsync(StateHasChanged);
+	}
+	public void Dispose()
+	{
+		timer?.Dispose();
+	}
+
+	@* login navigation *@
+	private void GoToLogin()
+	{
+		Navigation.NavigateTo("/login");
+	}
+}
+
+
+<div>
+	<div class="row m-1">
+		<div class="col-md-6 p-lg-5 titleBox">
+			<h1 class="title">Live Queueing System</h1>
+			<p class="mt-2">
+				A real-time queueing system of Naga College Foundation, Inc., developed to deliver a fast and seamless experience for you. A system envisioned to be the solution to long and painstaking queues in our beloved offices.
+			</p>
+			<p class="text-black-50">
+				Click below to add yourself in the queue.
+			</p>
+			<button class="btn btn-success Button2">Start a Transcation</button>
+		</div>
+		<div class="col-md-6 p-5 titleBox ">
+			<image src="/images/queue.png" alt="queue" class="queueImage"/>
+			<div class="datetime-container">
+				<h5 class="datetime fw-bolder">@currentTime</h5>
+			</div>
+		</div>
+	</div>
+
+	<div class="container ">
+
+	</div>
+
+</div>
+
