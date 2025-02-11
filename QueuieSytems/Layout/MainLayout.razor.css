@@ -77,34 +77,53 @@ main {
         padding-right: 1.5rem !important;
     }
 }
-
 .navbar {
     display: flex;
-    justify-content: flex-end; /* Distribute the logo, links, and datetime evenly */
+    background-color: #1C6933;
+    justify-content: space-between; /* Ensures logo is left and links are right */
     width: 100%;
-    /*margin: 0 auto;*/ /* Center the navbar */
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 3rem;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+}
+
+.links-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adds spacing between links */
 }
 
 a {
     font-family: 'Poppins', sans-serif;
-    color: darkslateblue;
+    color: white;
     font-weight: 500;
 }
 
     a:active, a:visited, a:link {
-        color: #094C1C;
+        color: white;
     }
 
+btn:hover {
+    background-color: white;
+    color: black;
+}
+
 .login {
-    display: inline-block;
     background-color: #094C1C;
     border-radius: 10px;
     font-family: 'Poppins';
-    padding: 0.5rem 2rem 0.5rem 2rem;
+    padding: 0.5rem 2rem;
     color: white;
     font-size: 1rem;
-    text-align: center;
     font-weight: 500;
     cursor: pointer;
-    margin: 0.5rem 1.5rem;
 }

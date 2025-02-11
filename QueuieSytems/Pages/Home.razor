@@ -25,25 +25,25 @@
 		timer?.Dispose();
 	}
 
-	@* login navigation *@
-	private void GoToLogin()
+	@* navigation *@
+	private void GoToOpenTransaction()
 	{
-		Navigation.NavigateTo("/login");
+		Navigation.NavigateTo("/open-transaction");
 	}
 }
 
 
 <div>
 	<div class="row m-1">
-		<div class="col-md-6 p-lg-5 titleBox">
+		<div class="col-md-6 p-lg-5 titleBox align-items-center">
 			<h1 class="title">Live Queueing System</h1>
 			<p class="mt-2">
 				A real-time queueing system of Naga College Foundation, Inc., developed to deliver a fast and seamless experience for you. A system envisioned to be the solution to long and painstaking queues in our beloved offices.
 			</p>
-			<p class="text-black-50">
+			<p class="text-black-50 pt-5 fst-italic">
 				Click below to add yourself in the queue.
 			</p>
-			<button class="btn btn-success Button2">Start a Transcation</button>
+			<button class="btn btn-success Button2" @onclick="GoToOpenTransaction">Start Transcation</button>
 		</div>
 		<div class="col-md-6 p-5 titleBox ">
 			<image src="/images/queue.png" alt="queue" class="queueImage"/>
@@ -55,6 +55,10 @@
 
 	<div class="container ">
 
+	</div>
+
+	<div class="footer">
+		<p class="footer-text text-center">Naga College Foundation, Inc. | Live Queuing System</p>
 	</div>
 
 </div>

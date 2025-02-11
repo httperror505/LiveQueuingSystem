@@ -1,0 +1,70 @@
+﻿@page "/open-transaction"
+
+<PageTitle>Open Transaction</PageTitle>
+
+@code {
+
+}
+
+<div class="container">
+
+	<div class="backButtonBox">
+		<!--back to history-->
+		<a href="/" class="btn btn-primary">Return</a>
+		
+	</div>
+	<div class="text-center">
+		<h1 class="title">Choose a Transaction</h1>
+		<p class="subtitle">Select the department and type of transaction you need.</p>
+	</div>
+
+	<div class="row pt-5 justify-content-center">
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Accounting</h5>
+					<!--add a line-->
+					<hr class="border-2 border-opacity-100 mb-3 mt-3 border-white" />
+					<p class="card-text">Payment, Assessment, and other Accounting-related transactions.</p>
+					@* <a href="#" class="btn btn-success">Select</a> *@
+				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-primary">Start Transaction</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card gap-3">
+				<div class="card-body">
+					<h5 class="card-title">Registrar</h5>
+					<!--add a line-->
+					<hr class="border-2 border-opacity-100 mb-3 mt-3 border-white" />
+					<p class="card-text">Enrollment, Request for Documents, and other Registrar-related transactions.</p>
+					@* <a href="#" class="btn btn-primary">Select</a> *@
+				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-primary">Start Transaction</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Finance</h5>
+					<!--add a line-->
+					<hr class="border-2 border-opacity-100 mb-3 mt-3 border-white" />
+					<p class="card-text">Scholarship, Tuition, and other Finance-related transactions.</p>
+					@* <a href="#" class="btn btn-primary">Select</a> *@
+				</div>
+				<div class="card-footer">
+					<a href="#" class="btn btn-primary">Start Transaction</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<p class="footer-text text-center">Naga College Foundation, Inc. | Live Queuing System</p>
+	</div>
+
+</div>

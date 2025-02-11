@@ -53,7 +53,23 @@ p {
     text-align: center;
     text-decoration: none;
     font-weight: 500;
-    margin: 2.5rem 2px;
+    margin: 0rem 2px;
     cursor: pointer;
     width: 40%;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #D9D9D9;
+    width: 100%;
+    padding: 2rem;
+    left: 0;
+    right: 0;
+}
+
+.footer-text {
+    font-family: 'Poppins';
+    font-size: 1rem;
+    color: black;
 }

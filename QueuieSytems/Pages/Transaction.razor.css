@@ -1,0 +1,69 @@
+﻿body {
+}
+
+h1 {
+    font-family: 'Poppins';
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.subtitle {
+    font-family: 'Poppins';
+    font-size: 1rem;
+}
+
+.card {
+    background-color: #1C6933;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /*height of card*/
+    height: 300px;
+}
+
+.card-title {
+    font-family: 'Poppins';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.card-text {
+    font-family: 'Poppins';
+    font-size: 1rem;
+    color: white;
+}
+
+.card-footer {
+    font-family: 'Poppins';
+    font-size: 1rem;
+    color: white;
+    border-width: 0; !important;
+}
+
+.btn {
+    align-items: center;
+    font-family: 'Poppins';
+    font-size: 1rem;
+    font-weight: 700;
+    margin-block: 1rem;
+    color: black;
+    background-color: #FDC925;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #D9D9D9;
+    width: 100%;
+    padding: 2rem;
+    left: 0;
+    right: 0;
+}
+
+.footer-text {
+    font-family: 'Poppins';
+    font-size: 1rem;
+    color: black;
+}
