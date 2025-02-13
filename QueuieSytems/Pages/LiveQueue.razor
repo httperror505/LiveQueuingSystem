@@ -1,5 +1,134 @@
-﻿<h3>LiveQueue</h3>
+﻿@page "/live-queue"
+
+<PageTitle>Live Queue</PageTitle>
+
+@using System.Timers;
 
 @code {
+	private string currentTime;
+	private Timer timer;
+	protected override void OnInitialized()
+	{
+		currentTime = DateTime.Now.ToString();
+		timer = new Timer(1000); // Set the timer interval to 1 second
+		timer.Elapsed += UpdateTime;
+		timer.Start();
+	}
+	private void UpdateTime(object sender, ElapsedEventArgs e)
+	{
+		currentTime = DateTime.Now.ToString();
+		InvokeAsync(StateHasChanged);
+	}
+	public void Dispose()
+	{
+		timer?.Dispose();
+	}
+
+	private int selectedQueue = 1; // Default to Accounting
+
+    // Method to get the name of the selected queue
+    private string GetQueueName(int queue)
+    {
+        return queue switch
+        {
+            1 => "Accounting",
+            2 => "Finance",
+            3 => "Registrar",
+            _ => "Unknown"
+        };
+    }
 
 }
+
+<div>
+	<div class="row px-5">
+		<div class="d-flex col-8 align-items-center">
+			<p class="selected-queue">@GetQueueName(selectedQueue) Office</p>
+		</div>
+		<div class="col-4">
+			<label class="form-label text-center">Select Queue</label>
+				<select @bind="selectedQueue" class="form-select">
+					<option value="1">Accounting</option>
+					<option value="2">Finance</option>
+					<option value="3">Registrar</option>
+				</select>
+		</div>
+	</div>
+
+	<div class="row justify-content-evenly mt-5">
+		@* Add the counters here *@
+		<div class="col-md-4">
+			<div class="text-center">
+				<h2 class="container-title">Counters</h2>
+			</div>
+			<div class="counter-column">
+				<div class="row counter-box">
+					<div class="col-2">
+						<h3 class="counter-status">0</h3
+					</div>
+					<div class="col-6">
+						<h3 class="counter-name">Window 1</h3
+					</div>
+					<div class="col-4">
+						<h3 class="counter-number">0</h3>
+					</div>
+				</div>
+				<div class="row counter-box">
+					<div class="col-2">
+						<h3 class="counter-status">0</h3
+					</div>
+					<div class="col-6">
+						<h3 class="counter-name">Window 1</h3
+					</div>
+					<div class="col-4">
+						<h3 class="counter-number">0</h3>
+					</div>
+				</div>
+				<div class="row counter-box">
+					<div class="col-2">
+						<h3 class="counter-status">0</h3
+					</div>
+					<div class="col-6">
+						<h3 class="counter-name">Window 1</h3
+					</div>
+					<div class="col-4">
+						<h3 class="counter-number">0</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		@* Current Serving *@
+		<div class="col-md-4">
+			<div class="text-center">
+				<h2  class="container-title">Current Serving</h2>
+				<h1 class="ticket-title">Ticket Number</h1>
+			</div>
+			<div class="ticket-container text-center">
+				<h1 class="ticket-number">205</h1>
+			</div>
+		</div>
+		@* Standby Queues *@
+		<div class="col-md-4">
+			<div class="text-center">
+				<h2 class="container-title">Standby</h2>
+			</div>
+			<div class="counter-column">
+				<div class="standby-box">
+					<h3 class="standby-text">0</h3>
+				</div>
+				<div class="standby-box">
+					<h3 class="standby-text">0</h3>
+				</div>
+				<div class="standby-box">
+					<h3 class="standby-text">0</h3>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="footer text-center">
+		<h5 class="datetime fw-bolder">@currentTime</h5>	
+	</div>
+
+</div>
