@@ -1,2 +1,125 @@
-﻿body {
+﻿
+
+.paymentBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+   
+    background: url('/images/ncf.jpg') no-repeat;
+    background-size: cover;
 }
+
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    width: 500px;
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+/*    gap: 10px;*/
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: nowrap;
+}
+
+.schoolName {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.header-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.title-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+}
+
+label {
+    font-family: 'Poppins', sans-serif;
+    text-align: left !important;
+}
+
+input {
+    width: 100%;
+}
+
+.inputFields {
+    text-align: left;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+/* table */
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+    .payment-table th,
+    .payment-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    .payment-table input {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+.total-row td {
+    font-weight: bold;
+    text-align: right;
+}
+
+/* Background class that will only be applied to this page */
+/*.payment-slip-background {
+    background: url('/images/ncf.jpg') no-repeat center center fixed !important;
+    background-size: cover !important;
+}*/

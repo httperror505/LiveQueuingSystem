@@ -1,5 +1,129 @@
-﻿<h3>PaymentSlip</h3>
+﻿@page "/accounting/payment-slip"
+
+<PageTitle>Payment Slip</PageTitle>
+
+<div class="paymentBackground">
+    <div class="card">
+        <div class="header">
+            <div class="row">
+                <div class="col-3">
+                    <img src="/images/logo.svg" alt="NCF Logo" class="logo" />
+                </div>
+                <div class="col-9 title-container">
+                    <div class="">
+                        <h3 class="schoolName">NAGA COLLEGE FOUNDATION, INC.</h3>
+                        <h2 class="header-title">PAYMENT SLIP</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form>
+            <div class="row inputFields">
+                <div class="col-8">
+                    <label for="studentID">Student ID:</label>
+                    <input type="text" id="studentID" placeholder="Enter student ID" />
+                </div>
+                <div class="col-4">
+					<label for="date">Date:</label>
+					<input type="date" id="date" />
+                </div>
+            </div>
+            
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" placeholder="Enter name" />
+
+
+            <table class="table payment-table">
+                <thead>
+                    <tr>
+                        <th>Payment Details</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select id="paymentType" @bind="selectedPayment" class="input-field">
+                                <option value="">-- Select --</option>
+                                <option value="Tuition">Tuition</option>
+                                <option value="Books">Books</option>
+                                <option value="Special Exam">Special Exam</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" id="amount" @bind="amount" class="input-field" placeholder="Enter amount" />
+                        </td>
+                        <td>
+                            <button type="button" class="add-btn" @onclick="AddPayment">Add</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+                
+                <table class="table payment-table" style="display:@(payments.Count > 0 ? "table" : "none");">
+                    <thead>
+                        <tr>
+                            <th>Payment Details</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in payments)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Amount</td>
+                                <td><button @onclick="() => RemovePayment(item)">Remove</button></td>
+                            </tr>
+                        }
+                        <tr class="total-row">
+                            <td class="text-end"><strong>Total</strong></td>
+                            <td><strong>@TotalAmount</strong></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            
+
+            @* <label for="amount">Amount:</label> *@
+            @* <input type="number" id="amount" placeholder="Enter amount" /> *@
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
 
 @code {
+    private string selectedPayment = "";
+    private decimal amount;
+    private List<PaymentItem> payments = new();
 
+    private void AddPayment()
+    {
+        if (!string.IsNullOrWhiteSpace(selectedPayment) && amount > 0)
+        {
+            payments.Add(new PaymentItem { Name = selectedPayment, Amount = amount });
+            selectedPayment = "";
+            amount = 0;
+        }
+    }
+
+    private void RemovePayment(PaymentItem item)
+    {
+        payments.Remove(item);
+    }
+
+    private decimal TotalAmount => payments.Sum(p => p.Amount);
+
+    class PaymentItem
+    {
+        public string Name { get; set; }
+        public decimal Amount { get; set; }
+    }
 }
