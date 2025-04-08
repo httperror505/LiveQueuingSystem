@@ -80,7 +80,7 @@ input {
 }
 
 button {
-    background-color: #007bff;
+    background-color: darkgreen;
     color: white;
     padding: 10px;
     border: none;
@@ -116,6 +116,62 @@ button {
 .total-row td {
     font-weight: bold;
     text-align: right;
+}
+
+.input-field {
+    width: 100%;
+    height: 38px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.add-btn {
+    width: 100%;
+    height: 38px;
+/*    background-color: #007bff;*/
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .add-btn:hover {
+        background-color: #0056b3;
+    }
+
+
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Adjust spacing between rows */
+    max-height: 6rem; /* Set max height before scrolling */
+    overflow-y: auto; /* Allow vertical scrolling only if needed */
+}
+
+.payment-item {
+    display: flex;
+    justify-content: space-between; /* Left-align text, right-align button */
+    align-items: center;
+    padding: 4px 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .payment-item span {
+        flex-grow: 1; /* Ensures text fills available space */
+        white-space: nowrap; /* Prevents text from breaking */
+    }
+
+.delete-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+    padding: 2px 5px;
 }
 
 /* Background class that will only be applied to this page */

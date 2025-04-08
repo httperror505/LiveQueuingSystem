@@ -1,5 +1,7 @@
 ﻿@page "/accounting/payment-slip"
 
+@using System.Linq
+
 <PageTitle>Payment Slip</PageTitle>
 
 <div class="paymentBackground">
@@ -24,11 +26,11 @@
                     <input type="text" id="studentID" placeholder="Enter student ID" />
                 </div>
                 <div class="col-4">
-					<label for="date">Date:</label>
-					<input type="date" id="date" />
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" />
                 </div>
             </div>
-            
+
             <label for="studentName">Student Name:</label>
             <input type="text" id="studentName" placeholder="Enter name" />
 
@@ -42,6 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Input row -->
                     <tr>
                         <td>
                             <select id="paymentType" @bind="selectedPayment" class="input-field">
@@ -59,71 +62,84 @@
                             <button type="button" class="add-btn" @onclick="AddPayment">Add</button>
                         </td>
                     </tr>
+
+                    <!--Automatically Remove all payment-->
+
+                    <!-- Combined Payment List in One Cell -->
+                    <tr>
+                        <td colspan="3">
+                            @if (payments.Any())
+                            {
+                                <div class="payment-list">
+                                    @foreach (var item in payments)
+                                    {
+                                        <div class="payment-item">
+                                            <span>@item.Key - @item.Value.ToString("F2")</span>
+                                            <button type="button" class="delete-btn btn-success" @onclick="() => RemovePayment(item.Key)">❌</button>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </td>
+                    </tr>
+
+                    <!-- Total row -->
+                    <tr>
+                        <td></td>
+                        <td class="text-end"><strong>Total</strong></td>
+                        <td><strong>@TotalAmount.ToString("F2")</strong></td>
+                    </tr>
                 </tbody>
             </table>
 
-                
-                <table class="table payment-table" style="display:@(payments.Count > 0 ? "table" : "none");">
-                    <thead>
-                        <tr>
-                            <th>Payment Details</th>
-                            <th>Amount</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in payments)
-                        {
-                            <tr>
-                                <td>@item.Name</td>
-                                <td>@item.Amount</td>
-                                <td><button @onclick="() => RemovePayment(item)">Remove</button></td>
-                            </tr>
-                        }
-                        <tr class="total-row">
-                            <td class="text-end"><strong>Total</strong></td>
-                            <td><strong>@TotalAmount</strong></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
 
-
-            
-
-            @* <label for="amount">Amount:</label> *@
-            @* <input type="number" id="amount" placeholder="Enter amount" /> *@
-
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
 </div>
 
 @code {
     private string selectedPayment = "";
-    private decimal amount;
-    private List<PaymentItem> payments = new();
+    private int amount;
+    private IDictionary<string, int> payments = new Dictionary<string, int>
+    {
+        {"Tuition", 0},
+        {"Books", 0},
+        {"Special Exam", 0},
+        {"Others", 0}
+    };
+
+    private int TotalAmount => payments.Values.Sum();
 
     private void AddPayment()
     {
         if (!string.IsNullOrWhiteSpace(selectedPayment) && amount > 0)
         {
-            payments.Add(new PaymentItem { Name = selectedPayment, Amount = amount });
+            if (payments.ContainsKey(selectedPayment))
+            {
+                payments[selectedPayment] += amount;
+            }
+            else
+            {
+                // If the payment type doesn't exist in the dictionary, you can add it
+                payments.Add(selectedPayment, amount);
+            }
+
             selectedPayment = "";
             amount = 0;
         }
     }
 
-    private void RemovePayment(PaymentItem item)
+    private void RemovePayment(string key)
     {
-        payments.Remove(item);
+        if (payments.ContainsKey(key))
+        {
+            payments.Remove(key);
+        }
     }
 
-    private decimal TotalAmount => payments.Sum(p => p.Amount);
-
-    class PaymentItem
-    {
-        public string Name { get; set; }
-        public decimal Amount { get; set; }
-    }
+    private void RemoveAllPayment(string key)
+	{
+		payments.Clear();
+	}
 }
